@@ -1,7 +1,7 @@
 "use client";
 
 import { ImageClassifier } from "@/components/image-classifier";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function ImageClassifierDemo() {

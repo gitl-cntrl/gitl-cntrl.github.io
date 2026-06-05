@@ -1,7 +1,7 @@
 "use client";
 
 import { WaveShader } from "@/components/wave-shader";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function WaveShaderDemo() {

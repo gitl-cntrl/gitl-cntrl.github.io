@@ -1,7 +1,7 @@
 "use client";
 
 import { AsciiArt } from "@/components/ascii-art";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 

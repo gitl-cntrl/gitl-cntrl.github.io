@@ -1,7 +1,7 @@
 "use client";
 
 import { Lens } from "@/components/lens";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 

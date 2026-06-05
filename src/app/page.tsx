@@ -4,7 +4,7 @@ import { AsciiArt } from "@/components/ascii-art";
 import { Lens } from "@/components/lens";
 import { WaveShader } from "@/components/wave-shader";
 import { ImageClassifier } from "@/components/image-classifier";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 const DEMO_IMAGE =
