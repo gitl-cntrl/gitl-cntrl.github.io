@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import * as tf from "@tensorflow/tfjs";
+import { motion, AnimatePresence } from "framer-motion";
+import "@tensorflow/tfjs";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 
 interface Prediction {
@@ -12,13 +12,12 @@ interface Prediction {
 
 export const ImageClassifier: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const [model, setModel] = useState<mobilenet.MobileNet | null>(null);
   const [predictions, setPredictions] = useState<Prediction[]>([]);
   const [loading, setLoading] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isModelLoading, setIsModelLoading] = useState(true);
   const [processingTime, setProcessingTime] = useState(0);
@@ -44,7 +43,7 @@ export const ImageClassifier: React.FC = () => {
     return () => {
       // Cleanup
       if (model) {
-        model.dispose();
+        (model as any).dispose?.();
       }
     };
   }, []);
@@ -96,14 +95,15 @@ export const ImageClassifier: React.FC = () => {
     const reader = new FileReader();
     reader.onload = (e) => {
       const result = e.target?.result as string;
-      if (imageRef.current) {
-        imageRef.current.src = result;
-        imageRef.current.onload = () => {
-          setImageLoaded(true);
-          setPredictions([]);
-          classifyImage(imageRef.current!);
-        };
-      }
+      setImageSrc(result);
+      setImageLoaded(true);
+      setPredictions([]);
+
+      const img = new Image();
+      img.src = result;
+      img.onload = () => {
+        classifyImage(img);
+      };
     };
     reader.onerror = () => {
       setError("Error reading file. Please try again.");
@@ -225,11 +225,13 @@ export const ImageClassifier: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <img
-                ref={imageRef}
-                alt="Uploaded"
-                className="w-full h-auto block"
-              />
+              {imageSrc && (
+                <img
+                  src={imageSrc}
+                  alt="Uploaded"
+                  className="w-full h-auto block"
+                />
+              )}
             </motion.div>
 
             {/* Results */}

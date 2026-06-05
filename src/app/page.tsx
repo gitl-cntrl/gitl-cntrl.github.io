@@ -3,12 +3,10 @@
 import { AsciiArt } from "@/components/ascii-art";
 import { Lens } from "@/components/lens";
 import { WaveShader } from "@/components/wave-shader";
-import { ImageClassifier } from "@/components/image-classifier";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const DEMO_IMAGE =
-  "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80";
+const DEMO_IMAGE = "/images/cyber_portrait.png";
 
 export default function Home() {
   return (

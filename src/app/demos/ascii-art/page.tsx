@@ -6,9 +6,9 @@ import Link from "next/link";
 import { useState } from "react";
 
 const DEMO_IMAGES = [
-  "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
-  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+  "/images/cyber_portrait.png",
+  "/images/neon_wolf.png",
+  "/images/neon_owl.png",
 ];
 
 const CHARSETS = [
@@ -30,7 +30,7 @@ const ANIMATIONS = [
 export default function AsciiArtDemo() {
   const [currentImage, setCurrentImage] = useState(0);
   const [charset, setCharset] = useState("standard");
-  const [animation, setAnimation] = useState("fade");
+  const [animation, setAnimation] = useState<"fade" | "typewriter" | "matrix" | "none">("fade");
   const [resolution, setResolution] = useState(60);
   const [color, setColor] = useState("#00ff00");
 
@@ -140,7 +140,7 @@ export default function AsciiArtDemo() {
               </label>
               <select
                 value={animation}
-                onChange={(e) => setAnimation(e.target.value)}
+                onChange={(e) => setAnimation(e.target.value as any)}
                 className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
               >
                 {ANIMATIONS.map((anim) => (

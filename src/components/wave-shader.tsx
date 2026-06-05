@@ -1,18 +1,22 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const vertexShader = `
+  attribute vec3 position;
+  attribute vec2 uv;
   varying vec2 vUv;
   
   void main() {
     vUv = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    gl_Position = vec4(position, 1.0);
   }
 `;
 
 const fragmentShader = `
+  precision mediump float;
+
   uniform float uTime;
   uniform float uWaveAmplitude;
   uniform float uWaveFrequency;
