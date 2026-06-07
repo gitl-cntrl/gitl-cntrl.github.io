@@ -59,12 +59,14 @@ interface WaveShaderProps {
   width?: number;
   height?: number;
   className?: string;
+  hideControls?: boolean;
 }
 
 export const WaveShader: React.FC<WaveShaderProps> = ({
   width = 800,
   height = 600,
   className = "",
+  hideControls = false,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const programRef = useRef<WebGLProgram | null>(null);
@@ -222,111 +224,113 @@ export const WaveShader: React.FC<WaveShaderProps> = ({
       </motion.div>
 
       {/* Controls */}
-      <motion.div
-        className="bg-slate-800/50 border border-slate-700 rounded-lg p-6 backdrop-blur space-y-6"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        viewport={{ once: true }}
-      >
-        <h3 className="text-2xl font-bold text-cyan-400">Wave Controls</h3>
+      {!hideControls && (
+        <motion.div
+          className="bg-slate-800/50 border border-slate-700 rounded-lg p-6 backdrop-blur space-y-6"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-2xl font-bold text-cyan-400">Wave Controls</h3>
 
-        {/* Wave Amplitude */}
-        <div>
-          <label className="block text-sm font-medium text-slate-300 mb-2">
-            Wave Amplitude: {waveAmplitude.toFixed(2)}
-          </label>
-          <input
-            type="range"
-            min="0"
-            max="0.5"
-            step="0.01"
-            value={waveAmplitude}
-            onChange={(e) => setWaveAmplitude(parseFloat(e.target.value))}
-            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
-          />
-        </div>
-
-        {/* Wave Frequency */}
-        <div>
-          <label className="block text-sm font-medium text-slate-300 mb-2">
-            Wave Frequency: {waveFrequency.toFixed(1)}
-          </label>
-          <input
-            type="range"
-            min="1"
-            max="20"
-            step="0.5"
-            value={waveFrequency}
-            onChange={(e) => setWaveFrequency(parseFloat(e.target.value))}
-            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
-          />
-        </div>
-
-        {/* Wave Speed */}
-        <div>
-          <label className="block text-sm font-medium text-slate-300 mb-2">
-            Wave Speed: {waveSpeed.toFixed(2)}
-          </label>
-          <input
-            type="range"
-            min="0"
-            max="5"
-            step="0.1"
-            value={waveSpeed}
-            onChange={(e) => setWaveSpeed(parseFloat(e.target.value))}
-            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
-          />
-        </div>
-
-        {/* Color Pickers */}
-        <div className="grid grid-cols-3 gap-4">
+          {/* Wave Amplitude */}
           <div>
             <label className="block text-sm font-medium text-slate-300 mb-2">
-              Color 1
+              Wave Amplitude: {waveAmplitude.toFixed(2)}
             </label>
-            <div className="flex gap-2 items-center">
-              <input
-                type="color"
-                value={color1}
-                onChange={(e) => setColor1(e.target.value)}
-                className="w-12 h-10 rounded cursor-pointer"
-              />
-              <span className="text-xs text-slate-400">{color1}</span>
-            </div>
+            <input
+              type="range"
+              min="0"
+              max="0.5"
+              step="0.01"
+              value={waveAmplitude}
+              onChange={(e) => setWaveAmplitude(parseFloat(e.target.value))}
+              className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
+            />
           </div>
 
+          {/* Wave Frequency */}
           <div>
             <label className="block text-sm font-medium text-slate-300 mb-2">
-              Color 2
+              Wave Frequency: {waveFrequency.toFixed(1)}
             </label>
-            <div className="flex gap-2 items-center">
-              <input
-                type="color"
-                value={color2}
-                onChange={(e) => setColor2(e.target.value)}
-                className="w-12 h-10 rounded cursor-pointer"
-              />
-              <span className="text-xs text-slate-400">{color2}</span>
-            </div>
+            <input
+              type="range"
+              min="1"
+              max="20"
+              step="0.5"
+              value={waveFrequency}
+              onChange={(e) => setWaveFrequency(parseFloat(e.target.value))}
+              className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
+            />
           </div>
 
+          {/* Wave Speed */}
           <div>
             <label className="block text-sm font-medium text-slate-300 mb-2">
-              Color 3
+              Wave Speed: {waveSpeed.toFixed(2)}
             </label>
-            <div className="flex gap-2 items-center">
-              <input
-                type="color"
-                value={color3}
-                onChange={(e) => setColor3(e.target.value)}
-                className="w-12 h-10 rounded cursor-pointer"
-              />
-              <span className="text-xs text-slate-400">{color3}</span>
+            <input
+              type="range"
+              min="0"
+              max="5"
+              step="0.1"
+              value={waveSpeed}
+              onChange={(e) => setWaveSpeed(parseFloat(e.target.value))}
+              className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+
+          {/* Color Pickers */}
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">
+                Color 1
+              </label>
+              <div className="flex gap-2 items-center">
+                <input
+                  type="color"
+                  value={color1}
+                  onChange={(e) => setColor1(e.target.value)}
+                  className="w-12 h-10 rounded cursor-pointer"
+                />
+                <span className="text-xs text-slate-400">{color1}</span>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">
+                Color 2
+              </label>
+              <div className="flex gap-2 items-center">
+                <input
+                  type="color"
+                  value={color2}
+                  onChange={(e) => setColor2(e.target.value)}
+                  className="w-12 h-10 rounded cursor-pointer"
+                />
+                <span className="text-xs text-slate-400">{color2}</span>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">
+                Color 3
+              </label>
+              <div className="flex gap-2 items-center">
+                <input
+                  type="color"
+                  value={color3}
+                  onChange={(e) => setColor3(e.target.value)}
+                  className="w-12 h-10 rounded cursor-pointer"
+                />
+                <span className="text-xs text-slate-400">{color3}</span>
+              </div>
             </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 };

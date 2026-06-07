@@ -76,7 +76,7 @@ export default function Home() {
             <Link href="/demos/lens" className="block aspect-video bg-black overflow-hidden cursor-pointer">
               <Lens zoomFactor={2} lensSize={200} isStatic position={{ x: 200, y: 150 }}>
                 <img
-                  src={DEMO_IMAGE}
+                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80"
                   alt="Lens demo"
                   className="w-full h-full object-cover"
                 />
@@ -104,8 +104,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <Link href="/demos/wave-shader" className="block aspect-video bg-black cursor-pointer">
-              <WaveShader width={400} height={300} className="hidden" />
+            <Link href="/demos/wave-shader" className="block aspect-video bg-black cursor-pointer overflow-hidden">
+              <WaveShader width={400} height={225} hideControls className="w-full h-full" />
             </Link>
             <div className="p-6">
               <h3 className="text-xl font-bold text-cyan-400 mb-2">Wave Shader</h3>
@@ -129,10 +129,26 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <Link href="/demos/image-classifier" className="block aspect-video bg-black flex items-center justify-center cursor-pointer">
-              <div className="text-center">
-                <div className="text-5xl mb-2">🤖</div>
-                <p className="text-slate-400">TensorFlow ML</p>
+            <Link href="/demos/image-classifier" className="block aspect-video bg-black cursor-pointer overflow-hidden relative group">
+              <img
+                src="/images/neon_owl.png"
+                alt="Image Classifier Preview"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 flex flex-col justify-end">
+                <div className="bg-slate-900/90 border border-slate-700/80 rounded p-2 text-xs font-mono backdrop-blur-sm">
+                  <div className="flex justify-between text-cyan-400 font-bold mb-1">
+                    <span>owl</span>
+                    <span>98.4%</span>
+                  </div>
+                  <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-gradient-to-r from-cyan-500 to-blue-500 h-full w-[98.4%]"></div>
+                  </div>
+                  <div className="flex justify-between text-slate-400 mt-1 text-[9px]">
+                    <span>bird, raptor</span>
+                    <span>TensorFlow MobileNet Inference</span>
+                  </div>
+                </div>
               </div>
             </Link>
             <div className="p-6">
