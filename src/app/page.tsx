@@ -6,8 +6,7 @@ import { WaveShader } from "@/components/wave-shader";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
-const DEMO_IMAGE = `${BASE_PATH}/images/cyber_portrait.png`;
+const DEMO_IMAGE = "/images/cyber_portrait.png";
 
 export default function Home() {
   return (
@@ -132,7 +131,7 @@ export default function Home() {
           >
             <Link href="/demos/image-classifier" className="block aspect-video bg-black cursor-pointer overflow-hidden relative group">
               <img
-                src={`${BASE_PATH}/images/neon_owl.png`}
+                src="/images/neon_owl.png"
                 alt="Image Classifier Preview"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />

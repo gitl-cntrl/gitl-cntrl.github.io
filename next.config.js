@@ -1,13 +1,7 @@
-const isChallengeF = process.env.GITHUB_REPOSITORY && process.env.GITHUB_REPOSITORY.endsWith('/challengeF');
-const basePath = isChallengeF ? '/challengeF' : '';
-
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  basePath: basePath,
-  env: {
-    NEXT_PUBLIC_BASE_PATH: basePath,
-  },
   images: {
     unoptimized: true,
   },
