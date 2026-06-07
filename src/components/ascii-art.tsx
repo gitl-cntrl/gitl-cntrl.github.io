@@ -451,33 +451,6 @@ export const AsciiArt: React.FC<AsciiArtProps> = ({
     return () => resizeObserver.disconnect();
   }, [isLoaded, asciiData, drawCanvas]);
 
-  if (error) {
-    return (
-      <div
-        className={cn(
-          "flex items-center justify-center text-red-500 text-sm font-mono",
-          className
-        )}
-      >
-        Error: {error}
-      </div>
-    );
-  }
-
-  if (!isLoaded) {
-    return (
-      <div
-        className={cn(
-          "flex items-center justify-center text-neutral-500 text-sm font-mono animate-pulse",
-          className
-        )}
-        style={{ backgroundColor }}
-      >
-        Loading...
-      </div>
-    );
-  }
-
   const canvasElement = (
     <canvas
       key={uniqueId}
@@ -494,17 +467,27 @@ export const AsciiArt: React.FC<AsciiArtProps> = ({
   return (
     <motion.div
       ref={containerRef}
-      className={cn("overflow-hidden", className)}
+      className={cn("overflow-hidden relative", className)}
       style={{ backgroundColor }}
       initial={isFade ? { opacity: 0 } : undefined}
       animate={
         isFade
           ? { opacity: shouldStartAnimation || hasAnimated ? 1 : 0 }
-          : undefined
+          : { opacity: 1 }
       }
       transition={{ duration: animationDuration * 0.3 }}
     >
-      {canvasElement}
+      {error ? (
+        <div className="absolute inset-0 flex items-center justify-center text-red-500 text-sm font-mono">
+          Error: {error}
+        </div>
+      ) : !isLoaded ? (
+        <div className="absolute inset-0 flex items-center justify-center text-neutral-500 text-sm font-mono animate-pulse">
+          Loading...
+        </div>
+      ) : (
+        canvasElement
+      )}
     </motion.div>
   );
 };
