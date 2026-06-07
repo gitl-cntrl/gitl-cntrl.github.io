@@ -5,10 +5,12 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const DEMO_IMAGES = [
-  "/images/cyber_portrait.png",
-  "/images/neon_wolf.png",
-  "/images/neon_owl.png",
+  `${BASE_PATH}/images/cyber_portrait.png`,
+  `${BASE_PATH}/images/neon_wolf.png`,
+  `${BASE_PATH}/images/neon_owl.png`,
 ];
 
 const CHARSETS = [
