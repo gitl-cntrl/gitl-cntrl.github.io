@@ -39,7 +39,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="aspect-video bg-black flex items-center justify-center overflow-hidden">
+            <Link href="/demos/ascii-art" className="block aspect-video bg-black overflow-hidden cursor-pointer">
               <AsciiArt
                 src={DEMO_IMAGE}
                 resolution={40}
@@ -50,7 +50,7 @@ export default function Home() {
                 animationDuration={1}
                 className="w-full h-full"
               />
-            </div>
+            </Link>
             <div className="p-6">
               <h3 className="text-xl font-bold text-cyan-400 mb-2">ASCII Art</h3>
               <p className="text-sm text-slate-400 mb-4">
@@ -73,7 +73,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <div className="aspect-video bg-black flex items-center justify-center overflow-hidden">
+            <Link href="/demos/lens" className="block aspect-video bg-black overflow-hidden cursor-pointer">
               <Lens zoomFactor={2} lensSize={200} isStatic position={{ x: 200, y: 150 }}>
                 <img
                   src={DEMO_IMAGE}
@@ -81,7 +81,7 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
               </Lens>
-            </div>
+            </Link>
             <div className="p-6">
               <h3 className="text-xl font-bold text-cyan-400 mb-2">Lens Effect</h3>
               <p className="text-sm text-slate-400 mb-4">
@@ -104,9 +104,9 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <div className="aspect-video bg-black">
+            <Link href="/demos/wave-shader" className="block aspect-video bg-black cursor-pointer">
               <WaveShader width={400} height={300} className="hidden" />
-            </div>
+            </Link>
             <div className="p-6">
               <h3 className="text-xl font-bold text-cyan-400 mb-2">Wave Shader</h3>
               <p className="text-sm text-slate-400 mb-4">
@@ -129,12 +129,12 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <div className="aspect-video bg-black flex items-center justify-center">
+            <Link href="/demos/image-classifier" className="block aspect-video bg-black flex items-center justify-center cursor-pointer">
               <div className="text-center">
                 <div className="text-5xl mb-2">🤖</div>
                 <p className="text-slate-400">TensorFlow ML</p>
               </div>
-            </div>
+            </Link>
             <div className="p-6">
               <h3 className="text-xl font-bold text-cyan-400 mb-2">Image Classifier</h3>
               <p className="text-sm text-slate-400 mb-4">
