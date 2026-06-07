@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Aceternity UI Playground",
-  description: "Live playground featuring Aceternity UI components with ASCII art and animations",
+  title: "ChallengeF",
+  description: "Live playground featuring ChallengeF components with ASCII art and animations",
 };
 
 export default function RootLayout({

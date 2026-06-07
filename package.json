@@ -1,7 +1,7 @@
 {
-  "name": "aceternity-playground",
+  "name": "challengef",
   "version": "1.0.0",
-  "description": "Live playground site using components from ui.aceternity",
+  "description": "Live playground site using components from ChallengeF",
   "private": true,
   "scripts": {
     "dev": "next dev",

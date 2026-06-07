@@ -19,7 +19,7 @@ export default function Home() {
         transition={{ duration: 0.8 }}
       >
         <h1 className="text-5xl md:text-7xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
-          Aceternity Playground
+          ChallengeF
         </h1>
         <p className="text-lg text-slate-400 text-center max-w-2xl">
           Explore cutting-edge UI components and interactive demos
