@@ -141,6 +141,9 @@ export const AsciiArt: React.FC<AsciiArtProps> = ({
 
   useEffect(() => {
     let isCancelled = false;
+    setIsLoaded(false);
+    setHasAnimated(false);
+    setError(null);
 
     const img = new Image();
     img.crossOrigin = "anonymous";
@@ -251,6 +254,10 @@ export const AsciiArt: React.FC<AsciiArtProps> = ({
       isCancelled = true;
     };
   }, [src, resolution, effectiveCharset, objectFit]);
+
+  useEffect(() => {
+    setHasAnimated(false);
+  }, [animationStyle]);
 
   const drawCanvas = useCallback(
     (progress: number = 1, matrixProgress?: number) => {
@@ -482,21 +489,17 @@ export const AsciiArt: React.FC<AsciiArtProps> = ({
     />
   );
 
+  const isFade = animationStyle === "fade" && animated;
+
   return (
     <motion.div
       ref={containerRef}
       className={cn("overflow-hidden", className)}
       style={{ backgroundColor }}
-      initial={
-        animationStyle === "fade" && animated && !hasAnimated
-          ? { opacity: 0 }
-          : undefined
-      }
+      initial={isFade ? { opacity: 0 } : undefined}
       animate={
-        animationStyle === "fade" && animated && !hasAnimated
-          ? shouldStartAnimation
-            ? { opacity: 1 }
-            : { opacity: 0 }
+        isFade
+          ? { opacity: shouldStartAnimation || hasAnimated ? 1 : 0 }
           : undefined
       }
       transition={{ duration: animationDuration * 0.3 }}
