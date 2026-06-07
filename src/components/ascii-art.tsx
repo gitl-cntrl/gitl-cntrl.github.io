@@ -482,29 +482,27 @@ export const AsciiArt: React.FC<AsciiArtProps> = ({
     />
   );
 
-  if (animationStyle === "fade" && animated && !hasAnimated) {
-    return (
-      <motion.div
-        ref={containerRef}
-        className={cn("overflow-hidden", className)}
-        style={{ backgroundColor }}
-        initial={{ opacity: 0 }}
-        animate={shouldStartAnimation ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: animationDuration * 0.3 }}
-      >
-        {canvasElement}
-      </motion.div>
-    );
-  }
-
   return (
-    <div
+    <motion.div
       ref={containerRef}
       className={cn("overflow-hidden", className)}
       style={{ backgroundColor }}
+      initial={
+        animationStyle === "fade" && animated && !hasAnimated
+          ? { opacity: 0 }
+          : undefined
+      }
+      animate={
+        animationStyle === "fade" && animated && !hasAnimated
+          ? shouldStartAnimation
+            ? { opacity: 1 }
+            : { opacity: 0 }
+          : undefined
+      }
+      transition={{ duration: animationDuration * 0.3 }}
     >
       {canvasElement}
-    </div>
+    </motion.div>
   );
 };
 
